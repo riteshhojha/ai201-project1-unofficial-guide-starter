@@ -1,0 +1,20 @@
+Rate My Professors Reviews (ratemyprofessors.com)
+
+Source: www.ratemyprofessors.com
+Type: Professor and course review platform
+Description: Student-generated platform for rating and reviewing individual professors
+
+Features:
+- Search professors by school or name
+- Anonymous rating submissions
+- User account management for editing ratings
+- Community feedback on professor ratings
+- Searchable database across institutions
+
+Key Data Points Captured:
+- Professor quality assessments from students
+- Accessibility to teacher/course information
+- Anonymous participation encourages honest reviews
+- Campus-specific professor databases
+
+Key Insight: Provides granular feedback on teaching quality and professor-level experiences across colleges.

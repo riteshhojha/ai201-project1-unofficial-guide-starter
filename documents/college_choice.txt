@@ -1,0 +1,14 @@
+College Choice Reviews (collegechoice.net)
+
+Source: www.collegechoice.net
+Type: Educational directory and ranking site
+Description: Helps students simplify college options through rankings and comparisons
+
+Features:
+- Ranking categories for best online colleges, affordable programs, specialized degrees
+- Navigation by location (state-based college searches)
+- Degree filtering (associate, bachelor's, master's, doctoral programs)
+- Topic guides for admissions, financial aid, scholarships
+- Popular rankings across business, healthcare, engineering fields
+
+Key Insight: Focuses on making college selection more accessible through specialized ranking categories and state-based navigation.
