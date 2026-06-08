@@ -311,3 +311,35 @@ The **generation provider** diverged from the plan. The Architecture diagram in 
 - *What I gave the AI:* I provided the LLM pipeline diagram from planning.md, the grounding requirements ("answer only from retrieved documents"), and asked Claude to implement a system prompt that enforces grounding and includes source attribution. I also specified the output format should cite sources.
 - *What it produced:* Claude generated a detailed system prompt with explicit instructions to decline answering if documents don't contain information, formatted context with source labels, and required citation format ("According to [source]:").
 - *What I changed or overrode:* The system prompt was strong, but I had to debug the Groq API integration — Claude had used the OpenAI-style `system=` parameter, which Groq's chat.completions API doesn't support. I corrected this to include system message in the `messages` array instead. Also, I added explicit enforcement of source attribution in the response (the model naturally complies with the prompt, but I wanted to be defensive).
+
+---
+
+## Stretch Features
+
+### Metadata Filtering
+
+The vector store keeps each chunk's `source` document name in its ChromaDB metadata, so retrieval can be restricted to specific sources. `ChunksEmbedder.retrieve()` accepts a `where` filter, `GroundedGenerator` exposes `available_sources()` and a `source_filter` argument, and the Gradio UI adds a **"Filter by source (optional)"** multi-select dropdown. When one or more sources are selected, ChromaDB applies `{"source": value}` (or `{"source": {"$in": [...]}}` for multiple) so only chunks from those documents are eligible for retrieval.
+
+**Visible effect** — same query (`"What do students say about professor quality and workload?"`, top-5):
+
+| Filter | Returned sources (distance) |
+| ------ | --------------------------- |
+| *None (all docs)* | sample_reviews (0.3976), sample_reviews (0.4387), niche_sample (0.5069), niche_sample (0.5091), reddit_reviews (0.5411) |
+| `source = rate_my_professors` | rate_my_professors (0.5918), rate_my_professors (0.6101), rate_my_professors (0.7027) |
+| `source ∈ {reddit, reddit_2}` | reddit_2 (0.7558), reddit (0.8050), reddit_2 (0.8474), reddit (0.8747), reddit_2 (0.9574) |
+
+The filter demonstrably changes which chunks are returned: the unfiltered query pulls the best matches from `sample_reviews`/`niche_sample`, while filtering to `rate_my_professors` returns only that source's three chunks (and the metadata constraint caps the result set at the number of matching chunks, which is why fewer than 5 come back). The higher distances under filtering also show the trade-off — forcing a single source can exclude the globally best matches.
+
+### Chunking Strategy Comparison
+
+`chunking_comparison.py` rebuilds the full corpus under three (chunk size / overlap) settings, embeds each with `all-MiniLM-L6-v2` into an in-memory ChromaDB collection, and runs the same three evaluation queries against each. Lower average cosine distance over the top-8 results = tighter retrieval.
+
+| Strategy (size/overlap) | # chunks | Q1 (professors) | Q2 (campus life) | Q3 (affordability) | Overall avg |
+| ----------------------- | -------- | --------------- | ---------------- | ------------------ | ----------- |
+| 150 / 30 (fine)         | 127      | 0.5038          | 0.4475           | 0.4597             | **0.4703**  |
+| 300 / 50 (production)   | 64       | 0.5129          | 0.4737           | 0.4609             | 0.4825      |
+| 600 / 100 (coarse)      | 35       | 0.5249          | 0.4537           | 0.4490             | 0.4759      |
+
+**Which performed better, and why:** On raw retrieval distance the **150/30 fine-grained** strategy wins overall (0.4703) and produces the single best hit of the entire experiment (0.2688 on affordability). This makes sense for this corpus: the documents are short, opinion-dense reviews, so smaller chunks isolate a single sentiment (e.g., just the "expensive / financial aid varies" line) and match a focused query very tightly, with less unrelated text to dilute the embedding. The 600/100 coarse strategy is a close second on the broader Q2/Q3 queries because each large chunk packs more on-topic context, but it loses on the specific professor query (Q1, 0.5249) where extra text adds noise. The **300/50 production setting actually had the highest average distance** of the three.
+
+So why keep 300/50? Distance isn't the only objective — **generation quality** matters too. The 150/30 chunks frequently sever a review mid-thought (e.g., splitting "engaging professor **but** harsh grader" across two chunks), which produces tighter retrieval scores but worse, fragmented context for the LLM to ground on. 300/50 is the deliberate compromise: distances within ~0.01–0.02 of the best while preserving complete review statements. The comparison confirms the chunk size could be tuned down if pure retrieval distance were the goal, but validates 300/50 as the right balance for grounded *generation*.
