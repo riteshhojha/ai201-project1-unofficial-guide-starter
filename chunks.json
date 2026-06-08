@@ -1,5 +1,41 @@
 [
   {
+    "text": "SOURCE: r/allegheny_college_website URL: https://allegheny.edu/student-life/clubs-and-organizations/ Over 130 clubs and organizations give Gators the opportunity to participate in a wide range of activities. You might gain experience with organizing, facilitating, marketing, finances, and leadership",
+    "source": "allegehny_website",
+    "source_index": 0,
+    "chunk_index": 0,
+    "metadata": {
+      "source": "allegehny_website",
+      "source_id": 0,
+      "chunk_id": 0,
+      "length": 300
+    }
+  },
+  {
+    "text": " facilitating, marketing, finances, and leadership, in addition to building friendships and just having fun! Allegheny clubs and organizations are open to all students without respect to sex, race, creed, national origin, sexual orientation, or ability/disability, and it\u2019s our students who lead the ",
+    "source": "allegehny_website",
+    "source_index": 0,
+    "chunk_index": 1,
+    "metadata": {
+      "source": "allegehny_website",
+      "source_id": 0,
+      "chunk_id": 1,
+      "length": 300
+    }
+  },
+  {
+    "text": "ty/disability, and it\u2019s our students who lead the way in establishing and running the organizations they care about most \u2014 what groups will you be a part of?",
+    "source": "allegehny_website",
+    "source_index": 0,
+    "chunk_index": 2,
+    "metadata": {
+      "source": "allegehny_website",
+      "source_id": 0,
+      "chunk_id": 2,
+      "length": 157
+    }
+  },
+  {
     "text": "Best Colleges Reviews (bestcolleges.com) Source: www.bestcolleges.com Type: Educational resource and ranking platform Description: Comprehensive resource library for college planning and career development Coverage: - 1,500+ college planning guides - 700+ program rankings - Degree rankings in psycho",
     "source": "best_colleges",
     "source_index": 1,
@@ -45,6 +81,42 @@
       "source_id": 1,
       "chunk_id": 3,
       "length": 62
+    }
+  },
+  {
+    "text": "SOURCE: r/college_confidential URL: https://talk.collegeconfidential.com/t/does-anyone-have-information-about-allegheny-college-in-pa/2068556/9 DATE: OCT, 2019 Vibe: middle of the road politically. \u201cStudy like an ivy, party like a state school\u201d - though that may be an exaggeration. Pretty traditiona",
+    "source": "cc_forum",
+    "source_index": 2,
+    "chunk_index": 0,
+    "metadata": {
+      "source": "cc_forum",
+      "source_id": 2,
+      "chunk_id": 0,
+      "length": 300
+    }
+  },
+  {
+    "text": "ugh that may be an exaggeration. Pretty traditional NE liberal arts college. Greek life present, but only 25-30%. Student body not too ethnically diverse. More economically diverse, however, than lots of top-tier liberal arts schools. Students from PA, OH, NY, NJ Excellent write up in the book, \u201cCol",
+    "source": "cc_forum",
+    "source_index": 2,
+    "chunk_index": 1,
+    "metadata": {
+      "source": "cc_forum",
+      "source_id": 2,
+      "chunk_id": 1,
+      "length": 300
+    }
+  },
+  {
+    "text": "A, OH, NY, NJ Excellent write up in the book, \u201cColleges that Change Lives\u201d.",
+    "source": "cc_forum",
+    "source_index": 2,
+    "chunk_index": 2,
+    "metadata": {
+      "source": "cc_forum",
+      "source_id": 2,
+      "chunk_id": 2,
+      "length": 75
     }
   },
   {
@@ -117,6 +189,78 @@
       "source_id": 4,
       "chunk_id": 2,
       "length": 230
+    }
+  },
+  {
+    "text": "SOURCE: r/Niche niche_reviews_allegheny URL: https://www.niche.com/colleges/allegheny-college/students/ DATE: January, 2026 Socially, there were frat parties and on campus houses parties, dozens of clubs to join, and the college hosted events. Meadville itself wasn't too big, but Erie was only 30 mi",
+    "source": "niche_reviews",
+    "source_index": 5,
+    "chunk_index": 0,
+    "metadata": {
+      "source": "niche_reviews",
+      "source_id": 5,
+      "chunk_id": 0,
+      "length": 300
+    }
+  },
+  {
+    "text": "lle itself wasn't too big, but Erie was only 30 minutes away. Peak N Peak skiing as a gym class was fun. Greek life exists but isn't overwhelming, and people are friends regardless of whether they were Greek.",
+    "source": "niche_reviews",
+    "source_index": 5,
+    "chunk_index": 1,
+    "metadata": {
+      "source": "niche_reviews",
+      "source_id": 5,
+      "chunk_id": 1,
+      "length": 208
+    }
+  },
+  {
+    "text": "SOURCE: r/Niche niche_reviews_allegheny URL: https://www.niche.com/colleges/allegheny-college/students/ DATE: January 22, 2021 I spent First Semester out of High School at Allegheny and then left to a larger university where I am much happier . I thought a small school was for me, but quickly found ",
+    "source": "niche_reviews_friends",
+    "source_index": 6,
+    "chunk_index": 0,
+    "metadata": {
+      "source": "niche_reviews_friends",
+      "source_id": 6,
+      "chunk_id": 0,
+      "length": 300
+    }
+  },
+  {
+    "text": "ught a small school was for me, but quickly found it boring and difficult to make friends. If you are not in a sport or group already, I found it difficult...Academically challenging but that was expected. I made more friends at new university in 2 days then I did the whole semester at Allegheny....",
+    "source": "niche_reviews_friends",
+    "source_index": 6,
+    "chunk_index": 1,
+    "metadata": {
+      "source": "niche_reviews_friends",
+      "source_id": 6,
+      "chunk_id": 1,
+      "length": 300
+    }
+  },
+  {
+    "text": "ays then I did the whole semester at Allegheny....Student just seem a \"little off\" or not really interested in making new friends from my perspective...Covid did not help the situation of course... I made several visits and stayed overnight before accepting and did not think I would have social prob",
+    "source": "niche_reviews_friends",
+    "source_index": 6,
+    "chunk_index": 2,
+    "metadata": {
+      "source": "niche_reviews_friends",
+      "source_id": 6,
+      "chunk_id": 2,
+      "length": 300
+    }
+  },
+  {
+    "text": "cepting and did not think I would have social problems at all",
+    "source": "niche_reviews_friends",
+    "source_index": 6,
+    "chunk_index": 3,
+    "metadata": {
+      "source": "niche_reviews_friends",
+      "source_id": 6,
+      "chunk_id": 3,
+      "length": 61
     }
   },
   {
@@ -273,6 +417,66 @@
       "source_id": 8,
       "chunk_id": 2,
       "length": 238
+    }
+  },
+  {
+    "text": "SOURCE: r/reddit URL: https://www.reddit.com/r/pittsburgh/comments/143n9y8/thoughts_on_allegheny_college/ Year: 2023 I was in greek life and I found it rewarding but it\u2019s definitely not the social epicenter of the school. I wouldn\u2019t say there\u2019s really any one thing that dominates social life like sp",
+    "source": "reddit",
+    "source_index": 9,
+    "chunk_index": 0,
+    "metadata": {
+      "source": "reddit",
+      "source_id": 9,
+      "chunk_id": 0,
+      "length": 300
+    }
+  },
+  {
+    "text": "y any one thing that dominates social life like sports or Greek life, most people find their friends at clubs or classes and then the fun finds them instead of the other way around.",
+    "source": "reddit",
+    "source_index": 9,
+    "chunk_index": 1,
+    "metadata": {
+      "source": "reddit",
+      "source_id": 9,
+      "chunk_id": 1,
+      "length": 181
+    }
+  },
+  {
+    "text": "SOURCE: r/reddit URL: https://www.reddit.com/r/pittsburgh/comments/143n9y8/thoughts_on_allegheny_college/ Year: 2023 I would say it's great for getting into grad school and less so for getting a job, but everyone's situation is different and I wound up doing fine without grad school. Not sure how th",
+    "source": "reddit_2",
+    "source_index": 10,
+    "chunk_index": 0,
+    "metadata": {
+      "source": "reddit_2",
+      "source_id": 10,
+      "chunk_id": 0,
+      "length": 300
+    }
+  },
+  {
+    "text": "up doing fine without grad school. Not sure how the social life is, when I went there you were allowed to live off campus which was better for parties but now you can't. I'm sure there are still plenty of parties though. I would say to take advantage of the fact it is small. Meet a lot of people ear",
+    "source": "reddit_2",
+    "source_index": 10,
+    "chunk_index": 1,
+    "metadata": {
+      "source": "reddit_2",
+      "source_id": 10,
+      "chunk_id": 1,
+      "length": 300
+    }
+  },
+  {
+    "text": " of the fact it is small. Meet a lot of people early on (just introduce yourself and learn their names, everyone wants to make friends) then you will run into people you know often. Meet people in your hall and get involved with something.",
+    "source": "reddit_2",
+    "source_index": 10,
+    "chunk_index": 2,
+    "metadata": {
+      "source": "reddit_2",
+      "source_id": 10,
+      "chunk_id": 2,
+      "length": 239
     }
   },
   {
