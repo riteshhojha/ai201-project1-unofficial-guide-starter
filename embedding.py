@@ -94,15 +94,23 @@ class ChunksEmbedder:
 
         print(f"✓ Stored {len(ids)} chunks in ChromaDB")
 
-    def retrieve(self, query: str, top_k: int = 8) -> List[Dict]:
-        """Retrieve top-k most relevant chunks for a query."""
+    def retrieve(self, query: str, top_k: int = 8, where: Dict = None) -> List[Dict]:
+        """Retrieve top-k most relevant chunks for a query.
+
+        Optional `where` is a ChromaDB metadata filter, e.g.
+        {"source": "niche_sample"} or {"source": {"$in": ["reddit", "reddit_2"]}}.
+        """
         query_embedding = self.model.encode(query)
 
-        results = self.collection.query(
-            query_embeddings=[query_embedding.tolist()],
-            n_results=top_k,
-            include=["documents", "metadatas", "distances"],
-        )
+        query_kwargs = {
+            "query_embeddings": [query_embedding.tolist()],
+            "n_results": top_k,
+            "include": ["documents", "metadatas", "distances"],
+        }
+        if where:
+            query_kwargs["where"] = where
+
+        results = self.collection.query(**query_kwargs)
 
         # Format results
         retrieved = []

@@ -48,9 +48,30 @@ Remember: Answer ONLY from these documents. If information is missing, say so.""
             name=self.embedder.COLLECTION_NAME
         )
 
-    def retrieve_context(self, query: str, top_k: int = 8) -> tuple[str, List[Dict]]:
+    def available_sources(self) -> List[str]:
+        """Return sorted list of distinct source documents in the vector store."""
+        data = self.embedder.collection.get(include=["metadatas"])
+        sources = {m["source"] for m in data["metadatas"]}
+        return sorted(sources)
+
+    @staticmethod
+    def _build_where(source_filter) -> Dict:
+        """Build a ChromaDB metadata filter from a source name or list of names."""
+        if not source_filter:
+            return None
+        if isinstance(source_filter, str):
+            source_filter = [source_filter]
+        if len(source_filter) == 1:
+            return {"source": source_filter[0]}
+        return {"source": {"$in": list(source_filter)}}
+
+    def retrieve_context(
+        self, query: str, top_k: int = 8, source_filter=None
+    ) -> tuple[str, List[Dict]]:
         """Retrieve context and format it for the prompt."""
-        results = self.embedder.retrieve(query, top_k=top_k)
+        results = self.embedder.retrieve(
+            query, top_k=top_k, where=self._build_where(source_filter)
+        )
 
         # Format context
         context_parts = []
@@ -62,10 +83,12 @@ Remember: Answer ONLY from these documents. If information is missing, say so.""
         context = "\n\n".join(context_parts)
         return context, results
 
-    def generate(self, query: str, top_k: int = 8) -> Dict:
+    def generate(self, query: str, top_k: int = 8, source_filter=None) -> Dict:
         """Generate grounded answer for a query."""
         # Retrieve context
-        context, retrieved_chunks = self.retrieve_context(query, top_k=top_k)
+        context, retrieved_chunks = self.retrieve_context(
+            query, top_k=top_k, source_filter=source_filter
+        )
 
         # Prepare prompt
         system_prompt = self.SYSTEM_PROMPT.format(context=context)

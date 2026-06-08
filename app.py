@@ -6,15 +6,22 @@ from generation import GroundedGenerator
 generator = GroundedGenerator()
 
 
-def answer_question(question: str) -> tuple[str, str]:
-    """Handle query and return answer + sources."""
-    result = generator.generate(question)
+SOURCE_CHOICES = generator.available_sources()
+
+
+def answer_question(question: str, source_filter: list) -> tuple[str, str]:
+    """Handle query and return answer + sources, optionally filtered by source."""
+    result = generator.generate(question, source_filter=source_filter or None)
 
     # Format answer
     answer = result["answer"]
 
     # Format sources with distance scores
-    sources_text = "**Retrieved from:**\n"
+    if source_filter:
+        sources_text = f"**Filtered to:** {', '.join(source_filter)}\n\n"
+    else:
+        sources_text = ""
+    sources_text += "**Retrieved from:**\n"
     for i, chunk in enumerate(result["retrieved_chunks"][:5], 1):
         sources_text += f"• {chunk['source']} (relevance: {chunk['distance']:.4f})\n"
 
@@ -35,6 +42,13 @@ with gr.Blocks(title="Allegheny College Review System") as demo:
                 placeholder="e.g., What do students say about professor quality?",
                 lines=3,
             )
+            source_filter = gr.Dropdown(
+                choices=SOURCE_CHOICES,
+                value=[],
+                multiselect=True,
+                label="Filter by source (optional)",
+                info="Leave empty to search all documents, or restrict retrieval to specific sources.",
+            )
             submit_btn = gr.Button("Ask", size="lg", variant="primary")
 
         with gr.Column():
@@ -48,8 +62,12 @@ with gr.Blocks(title="Allegheny College Review System") as demo:
             )
 
     # Wire up interactions
-    submit_btn.click(answer_question, inputs=question, outputs=[answer, sources])
-    question.submit(answer_question, inputs=question, outputs=[answer, sources])
+    submit_btn.click(
+        answer_question, inputs=[question, source_filter], outputs=[answer, sources]
+    )
+    question.submit(
+        answer_question, inputs=[question, source_filter], outputs=[answer, sources]
+    )
 
     gr.Examples(
         examples=[

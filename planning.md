@@ -176,3 +176,12 @@ College Student Reviews and Experiences — an aggregated database of authentic 
 - **Input:** Evaluation Plan questions, grounding requirements, expected answer structure
 - **Expected output:** System prompt for Claude API that enforces grounding + Python interface to tie retrieval→generation
 - **Verification:** Run 5 test questions through system; manually score retrieval quality and response accuracy using Evaluation Report table
+
+---
+
+## Stretch Features (planned after core pipeline)
+
+Added after the required pipeline was working and evaluated. Both reuse the existing ChromaDB store and embedding model rather than introducing new infrastructure.
+
+1. **Metadata filtering** — Each chunk already stores its `source` document in ChromaDB metadata. Plan: add an optional `where` filter to retrieval, expose a `source_filter` through the generator, and surface it as a multi-select dropdown in the Gradio UI so a user can restrict retrieval to chosen sources. Verification: run the same query with and without a filter and confirm the returned chunk set changes.
+2. **Chunking strategy comparison** — Re-run ingestion at multiple (chunk size / overlap) settings, embed each into a temporary collection, and run the same 3 evaluation queries to compare average retrieval distance. Verification: report a table of distances per strategy and explain which performed best and why, relative to the review-heavy document structure.
