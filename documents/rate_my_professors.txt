@@ -8,7 +8,7 @@ Features:
 - Search professors by school or name
 - Anonymous rating submissions
 - User account management for editing ratings
-- Community feedback on professor ratings
+- Community feedback o7n professor ratings
 - Searchable database across institutions
 
 Key Data Points Captured:
