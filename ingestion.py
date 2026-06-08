@@ -23,7 +23,7 @@ class Chunk:
                 "source_id": self.source_index,
                 "chunk_id": self.chunk_index,
                 "length": len(self.text),
-            }
+            },
         }
 
 
@@ -61,8 +61,8 @@ class DocumentIngestion:
     def clean_text(self, text: str) -> str:
         """Clean document text."""
         text = text.strip()
-        text = re.sub(r'\s+', ' ', text)
-        text = re.sub(r'\n\n+', '\n', text)
+        text = re.sub(r"\s+", " ", text)
+        text = re.sub(r"\n\n+", "\n", text)
         return text
 
     def chunk_text(self, text: str) -> List[str]:
@@ -128,6 +128,7 @@ class DocumentIngestion:
     def save_chunks_json(self, output_file: str = "chunks.json"):
         """Save chunks to JSON file."""
         import json
+
         chunks_data = [c.to_dict() for c in self.chunks]
         with open(output_file, "w", encoding="utf-8") as f:
             json.dump(chunks_data, f, indent=2)
@@ -139,7 +140,9 @@ class DocumentIngestion:
             f.write("source\tchunk_index\ttext\tlength\n")
             for chunk in self.chunks:
                 text_safe = chunk.text.replace("\n", " ").replace("\t", " ")
-                f.write(f"{chunk.source}\t{chunk.chunk_index}\t{text_safe}\t{len(chunk.text)}\n")
+                f.write(
+                    f"{chunk.source}\t{chunk.chunk_index}\t{text_safe}\t{len(chunk.text)}\n"
+                )
         print(f"✓ Saved {len(self.chunks)} chunks to {output_file}")
 
 
